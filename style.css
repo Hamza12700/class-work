@@ -1,0 +1,135 @@
+* {
+  padding:0;
+  margin:0;
+  box-sizing:border-box;
+  background: #161616;
+  color: white;
+  font-family: BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+form{
+  display:flex;
+  flex-direction:column;
+  width:500px;
+  margin:100px auto;
+}
+
+.heading {
+  margin-bottom: 20px;
+}
+
+.register_here {
+  margin-top: 10px;
+}
+
+form input{
+  padding:10px;
+  margin:5px 0;
+  border: 1px solid white;
+  border-radius: 4px;
+}
+
+input[type="file"] {
+  border: none;
+  padding: 0;
+}
+
+@media only screen and (max-width: 700px) {
+  /* Styles applied when the screen width is at least 768px */
+  form {
+    width: 400px;
+  }
+}
+
+.tweet_btns {
+  margin-top: 10px;
+}
+
+form select{
+  padding:10px;
+}
+
+footer ul {
+  display: flex;
+  list-style-type: none;
+  gap: 20px;
+  justify-content: center;
+}
+
+footer {
+  position:fixed;
+  bottom:12;
+  width:100%;
+}
+
+.login_btn {
+  background-color: #2a85d4;
+  color:#fff;
+  border-radius: 4px;
+  border:1px solid gray;
+  font-size: 15px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-top: 10px;
+}
+
+@media only screen and (max-width: 500px) {
+  /* Styles applied when the screen width is at least 768px */
+  form {
+    width: 350px;
+  }
+}
+
+
+@media only screen and (max-width: 400px) {
+  /* Styles applied when the screen width is at least 768px */
+  form {
+    width: 90%;
+  }
+}
+
+.user_tweet {
+  border:1px solid white;
+  padding: 10px;
+  width: 50%;
+  margin: auto;
+  margin-bottom: 15px;
+  margin-top: 15px;
+  border-radius: 4px;
+}
+
+.tweet_content {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.user_tweet button {
+  border: 1px solid white;
+  padding: 3px;
+}
+
+#tweet_heading {
+  width: 50%;
+  margin: auto;
+}
+
+#tweet_btn {
+  border: 1px solid white;
+  padding: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#tweet_textarea {
+  border: 1px solid white;
+  padding: 8px;
+  resize: none;
+  height: 100px;
+  border-radius: 4px;
+}
+
+.tweet_by {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
