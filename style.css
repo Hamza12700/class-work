@@ -133,3 +133,27 @@ footer {
   flex-direction: row;
   justify-content: space-between;
 }
+
+#home_header {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: anchor-center;
+  padding: 15px 12px 15px 12px;
+  border-bottom: 2px solid #2e2e2e;
+}
+
+#home_header a {
+  font-size: large;
+  text-decoration: none;
+}
+
+@media only screen and (max-width: 700px) {
+  .user_tweet {
+    width: 95%;
+  }
+
+  #tweet_heading {
+    margin-left: 12px;
+  }
+}

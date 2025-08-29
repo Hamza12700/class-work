@@ -2,13 +2,13 @@
 include("include.php");
 include("meta.php");
 
-if(isset($_SESSION['user_name'])) {  
-  echo "<script> window.location='home.php'</script>";
+if(isset($_SESSION['user_name'])) {
+  header("Location: home.php");
+  exit();
 }
 ?>
 
 <?php
-
 $status = "";
 if (isset($_POST['login_submit'])) {
   $user_name = $_POST['user_name'];

@@ -3,11 +3,10 @@ include("include.php");
 include("meta.php");
 
 $status = "";
-?>
 
-<?php
-if(isset($_SESSION['user_name'])) {  
-  echo "<script> window.location='home.php'</script>";
+if(isset($_SESSION['user_name'])) {
+  header("Location: home.php");
+  exit();
 }
 ?>
 

@@ -1,15 +1,17 @@
 <?php
 include("include.php");
 include("meta.php");
-?>
 
-<?php
-if(!isset($_SESSION['user_name'])) {  
-	echo "<script> window.location='login.php'</script>";
+if(!isset($_SESSION['user_name'])) {
+  header("Location: login.php");
+  exit(); // It's important to call 'exit' to not execute further code
 }
 ?>
 
-<a href="logout.php">Logout here...</a>
+<div id="home_header">
+	<h1>Twitter</h1>
+	<a href="logout.php">Logout</a>	
+</div>
 <form method="post" enctype="multipart/form-data">
 	<textarea required placeholder="What's on your mind?" id="tweet_textarea" name="tweet_text"></textarea>
 <div class="tweet_btns">
