@@ -8,9 +8,7 @@ if(isset($_SESSION['user_name'])) {
   header("Location: home.php");
   exit();
 }
-?>
 
-<?php
 if(isset($_POST['register_submit'])) {
   $user_name = $_POST['user_name'];
   $user_password = $_POST['user_password'];

@@ -4,14 +4,18 @@ include("meta.php");
 
 if(!isset($_SESSION['user_name'])) {
   header("Location: login.php");
-  exit(); // It's important to call 'exit' to not execute further code
+  exit();
 }
 ?>
 
 <div id="home_header">
-	<h1>Twitter</h1>
-	<a href="logout.php">Logout</a>	
+  <h1>Twitter</h1>
+  <div class="logout_and_profile">
+    <a href="logout.php">Logout</a>
+    <a href="user_profile.php">Profile</a>
+  </div>
 </div>
+
 <form method="post" enctype="multipart/form-data">
 	<textarea required placeholder="What's on your mind?" id="tweet_textarea" name="tweet_text"></textarea>
 <div class="tweet_btns">
@@ -74,6 +78,4 @@ while($user_tweet = mysqli_fetch_array($query)){
 	<button>like</button>
 </div>
 </div>
-<?php
-}
-?>
+<?php } ?>

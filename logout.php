@@ -2,5 +2,6 @@
 session_start();
 session_destroy();
 
-echo "<script>window.open('login.php','_SELF')</script>";
+header("Location: login.php");
+exit();
 ?>

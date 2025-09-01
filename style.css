@@ -148,6 +148,30 @@ footer {
   text-decoration: none;
 }
 
+.logout_and_profile {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.settings_div {
+  width: 65%;
+  margin: 15px auto 0 auto;
+}
+
+.settings_opts button {
+  padding: 7px 0 7px 0;
+  border: 1px solid white;
+  font-size: large;
+  margin-top: 20px;
+}
+
+
+.settings_opts input {
+  border: none;
+  border-bottom: 1px solid #424242;
+}
+
 @media only screen and (max-width: 700px) {
   .user_tweet {
     width: 95%;
