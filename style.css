@@ -160,12 +160,16 @@ footer {
 }
 
 .settings_opts button {
-  padding: 7px 0 7px 0;
+  padding: 7px 4px 7px 4px;
   border: 1px solid white;
   font-size: large;
   margin-top: 20px;
 }
 
+.del_up {
+  display: flex;
+  gap: 10px;
+}
 
 .settings_opts input {
   border: none;

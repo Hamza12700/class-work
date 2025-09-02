@@ -58,7 +58,10 @@ if (!$cover_photo) {
       <input name="cover" value="<?php echo $cover_photo; ?>" />
     </label>
 
-    <button name="update" type="submit">Update</button>
+    <div class="del_up">
+      <button name="update" type="submit">Update</button>
+      <button name="delete" type="submit">Delete</button>
+    </div>
   </form>
 </div>
 
@@ -69,5 +72,21 @@ if (isset($_POST['update'])) {
   $email = $_POST['email'];
   $photo = $_POST['photo'];
   $cover = $_POST['cover'];
+
+  $update = "UPDATE users set user_password = '$password', user_name = '$name', user_email = '$email' WHERE user_name = '$user_name'";
+  $query = mysqli_query($con,$update);
+  if (!$query) {
+    echo "Update failed!";
+  }
+} elseif (isset($_POST['delete'])) {
+  $delete = "delete from  users WHERE user_name = '$user_name'";
+  $query = mysqli_query($con,$delete);
+  if (!$query) {
+    echo "Delete failed!";
+  }
+
+  session_destroy();
+  header("Location: login.php");
+  exit();
 }
 ?>

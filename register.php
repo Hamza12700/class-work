@@ -8,7 +8,25 @@ if(isset($_SESSION['user_name'])) {
   header("Location: home.php");
   exit();
 }
+?>
 
+<form method="post">
+  <h1 class="heading">Register</h1>
+  <p><?php echo $status ?></p>
+  <input required type="text" name="user_name" placeholder="Write Your Name Here.."/>
+  <input required type="email" name="user_email" placeholder="Type Email.... "/>
+  <input required type="password" name="user_password" placeholder="Password "/>
+
+  <select name="user_gender">
+    <option>Male</option>
+    <option>Female</option>
+  </select>
+
+  <button class="login_btn" type="submit" name="register_submit">Register</button>
+  <a class="register_here" href="login.php">Already have an account? Login here</a>
+</form>
+
+<?php
 if(isset($_POST['register_submit'])) {
   $user_name = $_POST['user_name'];
   $user_password = $_POST['user_password'];
@@ -31,27 +49,11 @@ if(isset($_POST['register_submit'])) {
   $query = mysqli_query($con,$insert);
   if ($query && $check) {
     $status = "User Registered!";
-    echo "<script>window.open('home.php','_SELF')</script>" ;
+    header("Location: home.php");
+    exit();
   }
 }
-
 ?>
-
-<form method="post">
-  <h1 class="heading">Register</h1>
-  <p><?php echo $status ?></p>
-  <input required type="text" name="user_name" placeholder="Write Your Name Here.."/>
-  <input required type="email" name="user_email" placeholder="Type Email.... "/>
-  <input required type="password" name="user_password" placeholder="Password "/>
-
-  <select name="user_gender">
-    <option>Male</option>
-    <option>Female</option>
-  </select>
-
-  <button class="login_btn" type="submit" name="register_submit">Register</button>
-  <a class="register_here" href="login.php">Already have an account? Login here</a>
-</form>
 
 <footer>
   <ul>
