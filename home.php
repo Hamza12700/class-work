@@ -34,8 +34,8 @@ if (isset($_POST['insert_tweet'])) {
 	$tweet_year = date("Y");
 	$tweet_hour = date("g");
 	$tweet_minute = date("i");
-	echo $media_tmp_name = $_FILES['tweet_media']['tmp_name'];
-	echo  $media_name = $_FILES['tweet_media']['name'];
+	$media_tmp_name = $_FILES['tweet_media']['tmp_name'];
+	$media_name = $_FILES['tweet_media']['name'];
 	$folder = "user_data/";
 	$file_link = "user_data/".$media_name;
 
@@ -55,7 +55,7 @@ if (isset($_POST['insert_tweet'])) {
 <?php
 $fetch = "SELECT * from tweets";
 $query = mysqli_query($con,$fetch);
-while($user_tweet = mysqli_fetch_array($query)){
+while($user_tweet = mysqli_fetch_array($query)) {
 	$tweet_text = $user_tweet['tweet_text'];
 	$tweet_by = $user_tweet['tweet_by'];
 	$tweet_media_link = $user_tweet['tweet_media_link'];
@@ -71,11 +71,15 @@ while($user_tweet = mysqli_fetch_array($query)){
 		<p><?php echo $tweet_by; ?></p>
 		<p><?php echo $tweet_year." ".$tweet_day; ?></p>
 	</div>
+
 	<p class="tweet_content" name="tweet_text"><?php echo $tweet_text;?> </p>
-	<img src="<?php echo $tweet_media_link; ?>" />
-<div>
-	<button>comment</button>
-	<button>like</button>
-</div>
+  <?php if ($tweet_media_link != "user_data/") {
+    echo "<img src='$tweet_media_link' />";
+  }?>
+
+  <div>
+    <button>comment</button>
+    <button>like</button>
+  </div>
 </div>
 <?php } ?>

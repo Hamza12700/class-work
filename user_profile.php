@@ -11,13 +11,14 @@ if (!$user_name) {
 
 $fetch = "SELECT * from users where user_name = '$user_name' ";
 $query = mysqli_query($con,$fetch);
-while($user = mysqli_fetch_array($query)){
+while($user = mysqli_fetch_array($query)) {
   $user_name = $user['user_name'];
   $cover_photo = $user['cover_photo'];
   $profile_photo = $user['profile_photo'];
   $user_password = $user['user_password'];
   $user_gender = $user['user_gender'];
   $user_email = $user['user_email'];
+  $user_birth = $user['user_birth'];
 }
 
 if (!$profile_photo) {
@@ -50,11 +51,15 @@ if (!$cover_photo) {
       <input name="email" value="<?php echo $user_email; ?>" />
     </label>
 
+    <label>Date of Birth:
+      <input name="date" value="<?php echo $user_birth; ?>" />
+    </label>
+
     <label>Photo:
       <input name="photo" value="<?php echo $profile_photo; ?>" />
     </label>
 
-    <label>Photo:
+    <label>Cover Image:
       <input name="cover" value="<?php echo $cover_photo; ?>" />
     </label>
 
