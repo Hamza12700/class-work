@@ -1,15 +1,8 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="/images/fav.png" type="image/x-icon">
-    <title>LSM</title>
-  </head>
-
+  <?php require("meta-data.php"); ?>
   <body>
-    <?php
-    require("header.php");
-    ?>
+    <?php require("header.php"); ?>
 
     <div id="slider">
       <div>

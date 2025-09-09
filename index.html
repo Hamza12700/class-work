@@ -1,0 +1,28 @@
+<label>5
+  <input type="checkbox" id="1" value="5" />
+</label>
+
+<label>5
+  <input type="checkbox" id="2" value="5" />
+</label>
+
+<label>5
+  <input type="checkbox" id="3" value="5" />
+</label>
+<p id="res"></p>
+
+<script>
+  const inputs = document.querySelectorAll("input");
+  const res = document.getElementById("res");
+  num = 0;
+
+  inputs.forEach((input) => {
+    input.addEventListener("change", (event) => {
+      input = event.target;
+      if (input.checked) { num += Number(input.value); }
+      else { num -= Number(input.value); }
+      res.innerText = num;
+    });
+  });
+
+</script>

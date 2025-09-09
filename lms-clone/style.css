@@ -114,3 +114,36 @@
   font-size: large;
   resize: none;
 }
+
+#student-main-img {
+  display: block;
+  margin: 40px auto;
+  border-radius: 10px;
+}
+
+#student-title {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.student-headings {
+  margin: 6rem 0 2rem 0;
+  text-align: center;
+  font-size: 2rem;
+  text-decoration: underline;
+}
+
+.student-img-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+
+.student-img-container img {
+  width: 50rem;
+  border-radius: 10px;
+}
+
