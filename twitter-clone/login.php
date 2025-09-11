@@ -16,7 +16,7 @@ if (isset($_POST['login_submit'])) {
 
   $insert ="SELECT * FROM users WHERE user_name = '$user_name'";
   $query = mysqli_query($con, $insert);
-  $check_results = mysqli_num_rows( $query);
+  $check_results = mysqli_num_rows($query);
 
   if ($check_results > 0) {
     echo $_SESSION['user_name'] = $user_name; // dont use this variable outside of this if db_conndition

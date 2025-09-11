@@ -46,14 +46,10 @@
           <option>Male</option>
           <option>Female</option>
         </select>
-
       </fieldset>
 
-
-
       <fieldset>
-        <legend> Choose Course </legend>
-
+        <legend>Choose Course </legend>
         <div id="course_container">
           <?php
           $fetch = "SELECT * from courses";
@@ -75,15 +71,13 @@
       </fieldset>
 
       <fieldset>
-        <legend> Choose Course Duration </legend>
-
+        <legend>Choose Course Duration </legend>
         <select name="course_duration">
           <option>1 Month</option>
           <option selected>2 Months</option>
           <option>3 Months</option>
           <option>6 Months</option>
         </select>
-
       </fieldset>
 
       <fieldset>
@@ -122,23 +116,38 @@
 
 
 <?php
-if(isset($_POST['admission'])){
+
+// create images thumbs
+function make_thumb($src, $dest, $desired_width) {
+  /* read the source image */
+  $source_image = imagecreatefromjpeg($src);
+  $width = imagesx($source_image);
+  $height = imagesy($source_image);
+
+  /* find the "desired height" of this thumbnail, relative to the desired width  */
+  $desired_height = floor($height * ($desired_width / $width));
+
+  /* create a new, "virtual" image */
+  $virtual_image = imagecreatetruecolor($desired_width, $desired_height);
+
+  /* copy source image at a resized size */
+  imagecopyresampled($virtual_image, $source_image, 0, 0, 0, 0, $desired_width, $desired_height, $width, $height);
+
+  /* create the physical thumbnail image to its destination */
+  imagejpeg($virtual_image, $dest);
+}
+
+if(isset($_POST['admission'])) {
   $student_name = $_POST['student_name'];
-
   $student_email = $_POST['student_email'];
-
 
   $mobile_no = $_POST['mobile_no'];
   $gender = $_POST['gender'];
   $dob = $_POST['dob'];
-
   $address = $_POST['address'];
-
-
   $course = $_POST['course'];
 
   $course_short_name = $_POST['course_short_name'];
-
 
   $course_array="";
   foreach($course as $item){
@@ -146,13 +155,11 @@ if(isset($_POST['admission'])){
   }
   // rtrim Remove characters from the right side of a string:
   $course_array = rtrim($course_array,",");
-  // exit();
 
   $course_duration = $_POST['course_duration'];
 
   $guardian_name = $_POST['guardian_name'];
   $guardian_mobile_no = $_POST['guardian_mobile_no'];
-
 
   $admission_day =  date('j');   //j - The day of the month without leading zeros (1 to 31)
   $admission_month =  date('n');   //n - A numeric representation of a month, without leading zeros (1 to 12)
@@ -163,12 +170,7 @@ if(isset($_POST['admission'])){
   $last_id_row = mysqli_fetch_assoc($last_id_result);
   $last_id = $last_id_row['id'];
 
-
-
   $roll_no = $course_short_name."-".$last_id."-".$admission_year;
-
-
-
 
   $class_timing = $_POST['class_timing'];
 
@@ -179,27 +181,18 @@ if(isset($_POST['admission'])){
   $course_status = $_POST['course_status'];
 
 
-  $check_fetch = "SELECT * FROM admissions WHERE roll_no = '$roll_no' ";
+  $check_fetch = "SELECT * FROM admissions WHERE roll_no = '$roll_no'";
   $check_query = mysqli_query($db_conn,$check_fetch); 
-
   $check=mysqli_num_rows($check_query);
 
   if($check > 0){
-
     $status = "Student Is already Added...";
-
     echo "<script>setTimeout(function () {window.location.href = 'admission.php'}, 2000)</script>"; 
-
-  }
-
-  else {
-
+  } else {
     if (empty($_FILES['student_photo']['name'])) {
       $folder = "images/user.png";
       $student_photo_thumb = "images/user.png";
-    }
-
-    else {
+    } else {
       $student_photo = $_FILES['student_photo']['name'];
       $student_photo_tmp = $_FILES['student_photo']['tmp_name'];
       $student_photo_type = $_FILES["student_photo"]["type"];    // image/png
@@ -208,38 +201,9 @@ if(isset($_POST['admission'])){
       $student_photo_thumb = "/user_data/".$roll_no."/student_photos/thumbs/".$student_photo;
       move_uploaded_file($student_photo_tmp, $folder);
 
-
-      // create images thumbs
-      function make_thumb($src, $dest, $desired_width) {
-
-        /* read the source image */
-        $source_image = imagecreatefromjpeg($src);
-        $width = imagesx($source_image);
-        $height = imagesy($source_image);
-
-        /* find the "desired height" of this thumbnail, relative to the desired width  */
-        $desired_height = floor($height * ($desired_width / $width));
-
-        /* create a new, "virtual" image */
-        $virtual_image = imagecreatetruecolor($desired_width, $desired_height);
-
-        /* copy source image at a resized size */
-        imagecopyresampled($virtual_image, $source_image, 0, 0, 0, 0, $desired_width, $desired_height, $width, $height);
-
-        /* create the physical thumbnail image to its destination */
-        imagejpeg($virtual_image, $dest);
-      }
-
       $src=$folder;
-
       $dest = $student_photo_thumb;
-
-
-      $desired_width="250";
-      make_thumb($src, $dest, $desired_width);
-
-      // end create images thumbs
-
+      make_thumb($src, 250, $desired_width);
     }
 
 
@@ -266,7 +230,8 @@ if(isset($_POST['admission'])){
     received_course_fee,
     pending_course_fee,
     fee_status,
-    course_status
+    course_status,
+    email
     )
     values
     (
@@ -292,21 +257,19 @@ if(isset($_POST['admission'])){
     '$received_course_fee',
     '$pending_course_fee',
     '$fee_status',
-    '$course_status'
+    '$course_status',
+    '$student_email'
     )";
 
     $query = mysqli_query($db_conn,$insert);
     if ($query){
       $status = "Student Added Successfully...";
-      echo "<script>setTimeout(function () {window.location.href = 'admission.php'}, 1000)</script>"; 
-    } 
-
-    if(!$query ) {
+      $_SESSION['user_session'] = $roll_no;
+      echo "<script>setTimeout(function () {window.location.href = 'profile.php'}, 1000)</script>"; 
+      exit();
+    } else {
       die('Could not insert data: ' . mysqli_error($db_conn));
     }
-
   }
-
 }
-// mysqli_close($db_conn);
 ?>
