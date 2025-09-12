@@ -17,11 +17,11 @@
       <div>
         <h3>"Transforming Kids into Leaders"</h3>
         <p>Hand-picked Instructor and expertly crafted courses, designed for the modern students and entrepreneur.</p>
+
         <div>
           <button >Browse Courses</button>
           <button >Are you Instructor?</button>
         </div>
-
       </div>
 
       <img src="images/hero-img.png" />
@@ -41,13 +41,9 @@
 
             We are very confident that our courses will help you to find the missing peace you were always looking for. You will get certified once you complete the course.
           </p>
-
         </div>
+
       </div> <!-- who_we_are -->
-
-
-
-
 
       <div class="why_choose_us">
 
@@ -67,14 +63,10 @@
               We do offer after-sale support over the phone call. If our students have any doubts before or after completing the course they call on our given numbers.  
             </li>
           </ol>  
-
         </div> 
 
         <img src="images/online_class.jpg">
       </div> <!-- why_choose_us -->
-
-
-
 
       <div id="our_features_container">
 
@@ -88,7 +80,6 @@
           </div>
 
           <img src="images/Exclusive-Access-Accountability.jpg" />
-
         </div>
 
         <hr>
@@ -103,7 +94,6 @@
           </div>
 
           <img src="images/Keep-Courses-Yours-For-Lifetime.jpg" />
-
         </div>
 
         <hr>
@@ -116,20 +106,10 @@
               The best part is that you will not receive the course in parts. You can buy the course and even complete it in one day if you wish to. There are many other platforms that offer one lesson per day which we believe is a waste of time.  
             </p>
           </div>
-
           <img src="images/Huge-Time-Saver-Instant-Access.jpg" />
-
         </div>
 
       </div> <!-- our_features_container -->
-
-
-
-
-
-
-
-
     </div>  <!-- Page Container -->
 
     <?php 

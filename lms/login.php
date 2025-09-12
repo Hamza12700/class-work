@@ -32,6 +32,7 @@ require('config.php');
       $password = $_POST['password'];
 
       $result = mysqli_query($db_con, "select roll_no from admissions where email = '$email' and password = '$password'");
+      $roll_no = $result->fetch_object()->roll_no;
       if (mysqli_num_rows($result) == 0) {
         $status = "User doesn't exists";
       } else {
