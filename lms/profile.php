@@ -58,11 +58,20 @@
         <label for="address">Address:</label>
         <input name="address" value="<?php echo $user_address ?>" />
 
-        <button name="update" type="submit">Update</button>
+        <div style="display: flex; gap: 1rem;">
+          <button name="update" type="submit">Update</button>
+          <button name="logout" type="submit">Logout</button>
+        </div>
       </form>
     </main>
 
     <?php
+    if (isset($_POST['logout'])) {
+      session_destroy(); 
+      header("Location: index.php");
+      exit();
+    }
+
     if (isset($_POST['update'])) {
       $name = $_POST['name'];
       $email = $_POST['email'];

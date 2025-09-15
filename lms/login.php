@@ -38,7 +38,7 @@ require('config.php');
       } else {
         $status = "Logined Successfully...";
         $_SESSION['user_session'] = $roll_no;
-        echo "<script>setTimeout(function () {window.location.href = 'profile.php'}, 1000)</script>"; 
+        echo "<script>setTimeout(function () {window.location.href = 'profile.php'}, 500)</script>"; 
       }
     }
     ?>
