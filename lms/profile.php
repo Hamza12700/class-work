@@ -25,6 +25,7 @@
     $user_guardian = $user["guardian_name"];
     $user_phone = $user["mobile_no"];
     $user_address = $user["address"];
+    $user_roll_no = $user["roll_no"];
     /* $user_photo_thumbnail = $user["student_photo_thumb"]; */
     /* $user_photo = $user["student_photo"]; */
   }
@@ -37,7 +38,7 @@
 
     <main>
       <h2><?php echo $user_name; ?></h2>
-      <p><?php echo $user_email; ?></p>
+      <p><?php echo $user_email; ?> - <?php echo $user_roll_no; ?></p>
 
       <form class="form" method="post">
         <label for="name">Name:</label>
