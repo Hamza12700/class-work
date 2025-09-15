@@ -11,7 +11,15 @@
   <body>
     <?php 
     require('header.php');
+
+    $user_session = $_SESSION["user_session"];
+    $result = mysqli_query($db_con, "SELECT roll_no FROM admissions WHERE roll_no = '$user_session'"); 
+    if (!empty(mysqli_fetch_array($result))) {
+      header("Location: profile.php");
+      exit();
+    }
     ?>
+
     <form id="registration_form" method="post" target='_self' enctype="multipart/form-data">
       <p style="text-align: center; padding:10px;">Registration Form</p>
       <fieldset>
