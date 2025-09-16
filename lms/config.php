@@ -2,6 +2,7 @@
 // session will always be top of the page
 session_start();
 $current_user_session_id = session_id();
+$student_fetch_count = 10;
 
 //---003 Code to prevent save cache page in all browsers
 header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0"); // HTTP 1.1.
