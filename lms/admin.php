@@ -20,10 +20,13 @@
         <?php
           $page_no = $_GET['page_no'];
           if (!isset($page_no)) { $page_no = 1; }
+          if ($page_no <= 0) { $page_no = 1; }
 
           $total_students = mysqli_query($db_con, "SELECT COUNT(*) AS students FROM admissions");
           $students_count = mysqli_fetch_array($total_students)['students'];
           $total_pages = ceil($students_count / $student_fetch_count);
+
+          if ($page_no > $total_pages) { $page_no = $total_pages; }
 
           $offset = ($page_no-1) * $student_fetch_count;
           $result = mysqli_query($db_con, "SELECT * FROM admissions LIMIT $offset, $student_fetch_count"); 
