@@ -45,9 +45,10 @@
             $user_course_duration = $user["course_duration"];
             $user_photo_thumbnail = $user["student_photo_thumb"];
             $user_photo = $user["student_photo"];
+            $user_id = $user["id"];
           ?>
 
-          <div class="student-card">
+          <div class="student-card" onclick="student_info(<?php echo $user_id; ?>)">
             <p class="student-title"><?php echo $user_name; ?></p>
 
             <?php
@@ -114,6 +115,10 @@
 
     // console.log(new_url);
     window.open(new_url,'_SELF')
+  }
+
+  function student_info(id) {
+    window.open(`/student-info.php?id=${id}`, "_SELF");
   }
   </script>
 </html>
@@ -190,6 +195,7 @@ h1 {
   align-items: center;
   padding: 1rem;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .student-card img {
