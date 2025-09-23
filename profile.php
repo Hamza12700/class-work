@@ -18,7 +18,7 @@
 
   while ($user = mysqli_fetch_array($result)) {
     $user_name = $user["student_name"];
-    $user_email = $user["email"];
+    $user_email = $user["student_email"];
     $user_password = $user["password"];
     $user_roll_no = $user["roll_no"];
     $user_gender = $user["gender"];

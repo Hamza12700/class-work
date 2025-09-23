@@ -31,37 +31,37 @@
           $offset = ($page_no-1) * $student_fetch_count;
           $result = mysqli_query($db_con, "SELECT * FROM admissions LIMIT $offset, $student_fetch_count"); 
           while ($user = mysqli_fetch_array($result)) {
-            $user_name = $user["student_name"];
-            $user_email = $user["email"];
-            $user_password = $user["password"];
-            $user_roll_no = $user["roll_no"];
-            $user_gender = $user["gender"];
-            $user_course = $user["course"];
-            $user_guardian = $user["guardian_name"];
-            $user_phone = $user["mobile_no"];
-            $user_address = $user["address"];
-            $user_roll_no = $user["roll_no"];
-            $user_course_status = $user["course_status"];
-            $user_course_duration = $user["course_duration"];
-            $user_photo_thumbnail = $user["student_photo_thumb"];
-            $user_photo = $user["student_photo"];
+            $name = $user["student_name"];
+            $email = $user["student_email"];
+            $password = $user["password"];
+            $roll_no = $user["roll_no"];
+            $gender = $user["gender"];
+            $guardian = $user["guardian_name"];
+            $phone = $user["mobile_no"];
+            $address = $user["address"];
+            $roll_no = $user["roll_no"];
+            $course_status = $user["course_status"];
+            $course_duration = $user["course_duration"];
+            $photo_thumbnail = $user["student_photo_thumb"];
+            $photo = $user["student_photo"];
             $user_id = $user["id"];
           ?>
 
           <div class="student-card" onclick="student_info(<?php echo $user_id; ?>)">
-            <p class="student-title"><?php echo $user_name; ?></p>
+            <p class="student-title"><?php echo $name; ?></p>
 
             <?php
-            if ($user_photo == "" || $user_photo == "/") {
-              $user_photo = "images/no-img.jpg";
-            }
-            if ($user_address == "") {
-              $user_address = "Not mentioned";
+            if (!file_exists($photo)) {
+              $photo = "images/no-img.jpg";
+            } 
+
+            if ($address == "") {
+              $address = "Not mentioned";
             }
             ?>
 
-            <img src="<?php echo $user_photo; ?>" />
-            <p class="student-desc"><?php echo $user_course ?> | <?php echo $user_address ?></p>
+            <img src="<?php echo $photo; ?>" />
+            <p class="student-desc"><?php echo $course_status ?> | <?php echo $address ?></p>
           </div>
         <?php } ?> <!-- Closing the while loop -->
         </div>

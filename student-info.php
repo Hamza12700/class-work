@@ -24,7 +24,6 @@
     $password = $result->password;
     $roll_no = $result->roll_no;
     $gender = $result->gender;
-    $course = $result->course;
     $guardian = $result->guardian_name;
     $phone = $result->mobile_no;
     $address = $result->address;
@@ -47,19 +46,23 @@
     ?>
 
     <main>
-      <img id="student-pic" src="<?php echo $photo; ?>" />
+      <a href="/admin.php" class="backarrow">&Larr;</a>
 
-      <div>
-        <h1><?php echo $name; ?></h1>
-        <p>Roll no: <?php echo $roll_no; ?></p>
-        <p>Courses: <?php echo $course; ?></p>
-        <p>Date: <?php echo $year.'/'.$month; ?></p>
+      <div class="container">
+        <img id="student-pic" src="<?php echo $photo; ?>" />
+        <div>
+          <h1><?php echo $name; ?></h1>
+          <p>Roll no: <?php echo $roll_no; ?></p>
+          <p>Date: <?php echo $year.'/'.$month; ?></p>
 
-        <div class="btn-container">
-          <a href="<?php echo 'edit-student.php?id='.$id; ?>">Edit</a>
-          <a href="">Status</a>
-          <a href="">Certs</a>
+          <div class="btn-container">
+            <a href="<?php echo 'edit-student.php?id='.$id; ?>">Edit</a>
+            <a href="<?php echo 'student-results.php?id='.$id; ?>">Results</a>
+            <a href="">Status</a>
+            <a href="">Certs</a>
+          </div>
         </div>
+
       </div>
     </main>
 
@@ -73,7 +76,19 @@
 
 <style>
 main {
+  display: flex;
+  justify-content: center;
   margin: 5rem 0;
+  gap: 2rem;
+}
+
+.backarrow {
+  font-size: 2rem;
+  text-decoration: none;
+  color: black;
+}
+
+.container {
   display: flex;
   gap: 2rem;
   justify-content: center;

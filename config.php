@@ -4,6 +4,10 @@ session_start();
 $current_user_session_id = session_id();
 $student_fetch_count = 10;
 
+if (!is_dir("user_data")) {
+  mkdir("user_data");
+}
+
 //---003 Code to prevent save cache page in all browsers
 header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0"); // HTTP 1.1.
 header("Cache-Control: post-check=0, pre-check=0", false);

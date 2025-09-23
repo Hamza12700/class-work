@@ -23,7 +23,7 @@
     }
 
     $name = $res->student_name;
-    $email = $res->email;
+    $email = $res->student_email;
     $password = $res->password;
     $gender = $res->gender;
     $course = $res->course;
@@ -47,7 +47,11 @@
 
     <main>
       <div>
-        <h2><?php echo $name; ?></h2>
+        <div class="container">
+          <a href="<?php echo 'student-info.php?id='.$id ?>" class="backarrow">&Larr;</a>
+          <h2><?php echo $name; ?></h2>
+        </div>
+
         <p><?php echo $email; ?> - <?php echo $roll_no; ?></p>
         <strong>Unique ID: <?php echo $id; ?></strong>
 
@@ -86,6 +90,18 @@
     <?php
     if (isset($_POST['update-pic'])) {
       $file = $_FILES['pfp']['name'];
+      $tmp_file = $_FILES['pfp']['tmp_name'];
+      $user_dir = "user_data/".$id;
+      if (!is_dir($user_dir)) {
+        mkdir($user_dir);
+      }
+
+      $dest = $user_dir."/".$file;
+      move_uploaded_file($tmp_file, $dest);
+      $res = mysqli_query($db_con, "UPDATE admissions SET student_photo = '$dest' WHERE id = '$id'");
+      if (!$res) {
+        die("Failed to update the profile picture");
+      }
     }
 
     if (isset($_POST['update'])) {
@@ -96,7 +112,7 @@
       $phone = $_POST['phone'];
       $address = $_POST['address'];
 
-      $result = mysqli_query($db_con, "update admissions set student_name = '$name', email = '$email', password = '$password',
+      $result = mysqli_query($db_con, "update admissions set student_name = '$name', student_email = '$email', password = '$password',
       guardian_name = '$guardian_name', mobile_no = '$phone', address = '$address' where id = '$id'");
       if (!$result) {
         $status = "failed to update ".mysqli_error($db_con);
@@ -157,5 +173,19 @@ main {
   margin: 7px 0 1rem 0;
   padding: 4px;
   font-size: large;
+}
+
+.backarrow {
+  font-size: 2rem;
+  text-decoration: none;
+  color: black;
+  position: absolute;
+  left: -30px;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  position: relative;
 }
 </style>
