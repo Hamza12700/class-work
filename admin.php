@@ -210,7 +210,7 @@ h1 {
 
 .student-desc {
   width: 300px;
-  font-size: 1.3rem;
+  font-size: 1rem;
   background-color: #ea1273;
   color: white;
   padding: 1rem;
