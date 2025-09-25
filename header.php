@@ -23,6 +23,7 @@ if ($_SESSION['user_session']) { $login = "true"; }
 
     <div x-show="!login" id="right_menu_container">
       <button  onclick="window.open('register.php','_SELF')" title="Register" >Sign Up</button>
+      <button  onclick="window.open('login.php','_SELF')" title="Login" >Login</button>
     </div>
 
     <div x-show="login" id="right_menu_container">

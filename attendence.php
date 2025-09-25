@@ -25,14 +25,17 @@
       $pm_or_am = date("A");
 
       $res = mysqli_query($db_con, "SELECT * FROM admissions WHERE student_name = '$name' AND roll_no = '$roll_no'");
-      if (!$res) { $staus = "Student does not exists!"; }
       
-      $check = mysqli_query($db_con, "INSERT INTO attendence (roll_no, name, year, month, day, hour, pm_or_am) VALUES ('$roll_no', '$name', '$year', '$month', '$day', '$hour', '$pm_or_am')");
-      if (!$check) {
-        $status = "Failed to insert into the database";
+      $check = mysqli_query($db_con, "SELECT day FROM attendence WHERE name = '$name' AND roll_no = '$roll_no'")->fetch_object();
+      if ($check->day === $day) {
+        $status = "Already marked attendence for ".$name;
+      } else {
+        $check = mysqli_query($db_con, "INSERT INTO attendence (roll_no, name, year, month, day, hour, pm_or_am) VALUES ('$roll_no', '$name', '$year', '$month', '$day', '$hour', '$pm_or_am')");
+        if (!$check) {
+          $status = "Failed to insert into the database";
+        }
+        $status = "Marked Attendence for ".$name; 
       }
-
-      $status = "Marked Attendence for ".$name; 
     }
     ?>
 
