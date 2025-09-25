@@ -1,4 +1,11 @@
-<header>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+<?php
+$login = "false";
+if ($_SESSION['user_session']) { $login = "true"; }
+?>
+
+<header x-data="{login: <?php echo $login; ?>}">
   <div id="header_row_1">
     <i class="fal fa-envelope  title="Change Theme"> <?php echo $email; ?></i>
     <i class="fal fa-phone-volume  title="Browse Courses"> <?php echo $landline_no." - ".$whatsapp ; ?> </i>
@@ -14,9 +21,12 @@
       <button type="submit" class="fas fa-search"></button>
     </form>
 
-    <div id="right_menu_container">
-      <button onclick="window.open('login.php','_SELF')" title="Sign In" >Sign In</button>
+    <div x-show="!login" id="right_menu_container">
       <button  onclick="window.open('register.php','_SELF')" title="Register" >Sign Up</button>
+    </div>
+
+    <div x-show="login" id="right_menu_container">
+      <button style="background-color: transparent; color: black; font-size: large;" onclick="window.open('profile.php','_SELF')" title="Profile" >Profile</button>
     </div>
   </div>
 
