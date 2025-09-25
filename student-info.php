@@ -6,6 +6,8 @@
     require('config.php');
     require('meta.php');
     ?>
+
+    <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.7/dist/htmx.min.js"></script>
   </head>
 
   <body>
@@ -58,13 +60,19 @@
           <div class="btn-container">
             <a href="<?php echo 'edit-student.php?id='.$id; ?>">Edit</a>
             <a href="<?php echo 'student-results.php?id='.$id; ?>">Results</a>
-            <a href="">Status</a>
+            <a
+              hx-get="/student-attendence.php?roll_no=<?php echo $roll_no; ?>"
+              hx-trigger="click"
+              hx-target="#static-results"
+              href="#"
+              >
+              Attendance</a>
             <a href="">Certs</a>
           </div>
         </div>
-
       </div>
     </main>
+    <div id="static-results"></div>
 
     <?php 
     require('footer.php');

@@ -6,13 +6,6 @@ if ($_SESSION['user_session']) { $login = "true"; }
 ?>
 
 <header x-data="{login: <?php echo $login; ?>}">
-  <div id="header_row_1">
-    <i class="fal fa-envelope  title="Change Theme"> <?php echo $email; ?></i>
-    <i class="fal fa-phone-volume  title="Browse Courses"> <?php echo $landline_no." - ".$whatsapp ; ?> </i>
-    <i class="fas fa-language"  title="Change Language"></i>
-    <i class="fas fa-palette"  title="Change Theme"></i>
-  </div>
-
   <div id="header_row_2">
     <img onclick="window.open('index.php','_SELF')" id="site_logo" src="<?php echo $site_logo; ?>"/>
 
