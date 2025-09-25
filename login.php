@@ -48,9 +48,9 @@ require('config.php');
       if (!$roll_no) {
         $status = "User doesn't exists";
       } else {
-        $status = "Logined Successfully...";
-        $_SESSION['user_session'] = $email;
-        echo "<script>setTimeout(function () {window.location.href = 'profile.php'}, 500)</script>"; 
+        $_SESSION['user_session'] = $result->id;
+        header("Location: profile.php");
+        exit();
       }
     }
     ?>

@@ -15,7 +15,7 @@
     exit();
   }
 
-  $res = mysqli_query($db_con, "SELECT * FROM admissions WHERE student_email = '$user_session'")->fetch_object();
+  $res = mysqli_query($db_con, "SELECT * FROM admissions WHERE id = '$user_session'")->fetch_object();
   $user_name = $res->student_name;
   $user_email = $res->student_email;
   $user_password = $res->password;
@@ -106,8 +106,8 @@
       $phone = $_POST['phone'];
       $address = $_POST['address'];
 
-      $result = mysqli_query($db_con, "update admissions set student_name = '$name', email = '$email', password = '$password',
-      guardian_name = '$guardian_name', mobile_no = '$phone', address = '$address' where roll_no = '$user_session'");
+      $result = mysqli_query($db_con, "UPDATE admissions SET student_name = '$name', student_email = '$email', password = '$password',
+      guardian_name = '$guardian_name', mobile_no = '$phone', address = '$address' where id = '$user_session'");
       if (!$result) {
         $status = "failed to update ".mysqli_error($db_con);
       } else {
