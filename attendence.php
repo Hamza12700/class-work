@@ -26,7 +26,7 @@
 
       $res = mysqli_query($db_con, "SELECT * FROM admissions WHERE student_name = '$name' AND roll_no = '$roll_no'");
       
-      $check = mysqli_query($db_con, "SELECT day FROM attendence WHERE name = '$name' AND roll_no = '$roll_no'")->fetch_object();
+      $check = mysqli_query($db_con, "SELECT day FROM attendence WHERE roll_no = '$roll_no' ORDER BY id DESC")->fetch_object();
       if ($check->day === $day) {
         $status = "Already marked attendence for ".$name;
       } else {
