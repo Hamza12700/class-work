@@ -6,6 +6,7 @@
     require('config.php');
     require('meta.php');
     ?>
+    <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.7/dist/htmx.min.js"></script>
   </head>
 
   <body>
@@ -40,9 +41,17 @@
         <p><?php echo $status; ?></p>
         <h1 class="title">Mark Online Attendence</h1>
 
-        <input id="name" required name="name" placeholder="Student Name" />
+        <p id="student-found"></p>
+        <input
+          hx-get="/fetch-students.php"
+          hx-trigger="input changed keyup=[key=='Enter'], load"
+          hx-target="#student-found"
+
+          id="name" required name="name" placeholder="Student Name" />
+
         <input id="roll_no" required name="roll_no" placeholder="Roll no" />
-        <img class="student-img" src="images/no-img.jpg" />
+        <input id="guardian_name" required name="guardian_name" placeholder="Guardian Name" />
+        <img id="student-img" src="images/no-img.jpg" />
         <button name="mark" type="submit">Mark Attendence</button>
       </form>
     </main>
@@ -52,15 +61,6 @@
     ?>
     <script src="<?php echo $java_script; ?>"></script>
   </body>
-
-  <script>
-    const name = document.getElementById("name");
-    const roll_no = document.getElementById("roll_no");
-
-    name.addEventListener("keydown", (event) => {
-      console.log(event.target.value);
-    });
-  </script>
 </html>
 
 <style>
@@ -89,5 +89,9 @@ button[type="submit"] {
   padding: 8px 0;
   font-size: large;
   font-weight: bold;
+}
+
+#student-img {
+  width: 400px;
 }
 </style>
