@@ -28,6 +28,7 @@ if ($_SESSION['user_session']) { $login = "true"; }
 
     <div x-show="login" id="right_menu_container">
       <button style="background-color: transparent; color: black; font-size: large;" onclick="window.open('profile.php','_SELF')" title="Profile" >Profile</button>
+      <button style="font-size: large;" onclick="window.open('attendence.php','_SELF')" title="Attendence" >Mark Attendence</button>
     </div>
   </div>
 
