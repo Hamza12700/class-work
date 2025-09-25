@@ -13,8 +13,7 @@ require('config.php');
 
   <?php
   $user_session = $_SESSION["user_session"];
-  $result = mysqli_query($db_con, "SELECT roll_no FROM admissions WHERE roll_no = '$user_session'"); 
-  if (!empty(mysqli_fetch_array($result))) {
+  if ($usser_session) {
     header("Location: profile.php");
     exit();
   }
@@ -24,23 +23,6 @@ require('config.php');
     <?php 
     require('header.php');
     $status = "";
-    ?>
-
-    <?php
-    if (isset($_POST['login'])) {
-      $email = $_POST['email'];
-      $password = $_POST['password'];
-
-      $result = mysqli_query($db_con, "select roll_no from admissions where email = '$email' and password = '$password'");
-      $roll_no = $result->fetch_object()->roll_no;
-      if (mysqli_num_rows($result) == 0) {
-        $status = "User doesn't exists";
-      } else {
-        $status = "Logined Successfully...";
-        $_SESSION['user_session'] = $roll_no;
-        echo "<script>setTimeout(function () {window.location.href = 'profile.php'}, 500)</script>"; 
-      }
-    }
     ?>
 
     <h1 id="title">Login</h1>
@@ -55,6 +37,23 @@ require('config.php');
       </label> 
       <button type="submit" name="login">Login</button>
     </form>
+
+    <?php
+    if (isset($_POST['login'])) {
+      $email = $_POST['email'];
+      $password = $_POST['password'];
+
+      $result = mysqli_query($db_con, "SELECT * FROM admissions WHERE student_email = '$email' AND password = '$password'")->fetch_object();
+      $roll_no = $result->roll_no;
+      if (!$roll_no) {
+        $status = "User doesn't exists";
+      } else {
+        $status = "Logined Successfully...";
+        $_SESSION['user_session'] = $email;
+        echo "<script>setTimeout(function () {window.location.href = 'profile.php'}, 500)</script>"; 
+      }
+    }
+    ?>
 
     <?php 
     require('footer.php');
