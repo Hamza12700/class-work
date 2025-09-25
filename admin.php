@@ -48,7 +48,7 @@
           ?>
 
           <div class="student-card" onclick="student_info(<?php echo $user_id; ?>)">
-            <p class="student-title"><?php echo $name; ?></p>
+            <p class="student-title"><?php echo $name; ?> - <?php echo $roll_no; ?></p>
 
             <?php
             if (!file_exists($photo)) {
@@ -205,7 +205,7 @@ h1 {
 .student-title {
   margin: 1rem 0;
   text-align: center;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
 }
 
 .student-desc {
