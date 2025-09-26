@@ -12,17 +12,10 @@
 <!-- Title -->      
 <title><?php echo $browser_tab_title; ?></title>                                                
 
-<!-- for not to view google dialoge box 'Translate this page' -->
-<meta name="google" content="notranslate">  
-
-<!-- Site Info -->    
-<meta name="description" content="Islamic E-Store"/>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 
 <!-- Css  -->  
 <link rel="stylesheet" type="text/css" href="<?php echo $style_sheet; ?>" >
-<!-- Font awesome --> 
- <link rel="stylesheet" type="text/css" href="<?php echo $fontawesome; ?>" /> 
 
 <!-- To view message if js is not enable or blocked in browser --> 
 <noscript>You can not surf this site util you enable javascript in your browser... ):</noscript>
