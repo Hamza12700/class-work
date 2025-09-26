@@ -115,6 +115,7 @@ button[disabled] {
 
 .btn-container a,button {
   font-size: large;
+  font-family: auto;
   font-weight: bold;
   cursor: pointer;
   color: black;

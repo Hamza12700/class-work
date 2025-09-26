@@ -39,20 +39,25 @@ if (!$name) {
       </thead>
 
       <tbody>
+        <?php
+        $result = mysqli_query($db_con, "SELECT * FROM attendence WHERE roll_no = '$roll_no'");
+        while ($record = $result->fetch_array()) {
+        ?>
         <tr>
-          <th scope="row"><?php echo $year ?></th>
-          <th scope="row"><?php echo $month ?></th>
-          <th scope="row"><?php echo $day ?></th>
-          <th scope="row"><?php echo $hour ?></th>
-          <th scope="row"><?php echo $pm_am ?></th>
+          <th scope="row"><?php echo $record["year"] ?></th>
+          <th scope="row"><?php echo $record["month"] ?></th>
+          <th scope="row"><?php echo $record["day"] ?></th>
+          <th scope="row"><?php echo $record["hour"] ?></th>
+          <th scope="row"><?php echo $record["pm_or_am"] ?></th>
         </tr>
+        <?php } ?> <!-- Closeing the while loop -->
       </tbody>
     </table>
   </div>
 
   <p
     x-show="!show_table"
-    style="text-align: center;"
+    style="text-align: center; font-size: large;"
   >No records found for student <?php echo $student_name; ?></p>
 </div>
 
