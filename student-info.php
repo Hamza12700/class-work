@@ -60,13 +60,13 @@
           <div class="btn-container">
             <a href="<?php echo 'edit-student.php?id='.$id; ?>">Edit</a>
             <a href="<?php echo 'student-results.php?id='.$id; ?>">Results</a>
-            <a
+            <button
               hx-get="/student-attendence.php?roll_no=<?php echo $roll_no; ?>"
               hx-trigger="click"
               hx-target="#static-results"
-              href="#"
+              id="fetch-attendance"
               >
-              Attendance</a>
+              Attendance</button>
             <a href="">Certs</a>
           </div>
         </div>
@@ -108,14 +108,21 @@ main {
   border-top: 1px solid black;
 }
 
-.btn-container a {
+button[disabled] {
+  background-color: #aaaaaa;
+  cursor: not-allowed;
+}
+
+.btn-container a,button {
   font-size: large;
   font-weight: bold;
+  cursor: pointer;
   color: black;
   padding: 8px;
   border: 1px solid black;
   border-radius: 4px;
   text-decoration: none;
+  background-color: transparent;
 }
 
 #student-pic {
@@ -123,6 +130,10 @@ main {
   height: fit-content;
   border-radius: 4px;
   width: 300px;
+}
+
+#static-results {
+  margin: 3rem 0;
 }
 
 </style>
