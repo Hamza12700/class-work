@@ -115,6 +115,5 @@
     <?php 
     require('footer.php');
     ?>
-    <script src="<?php echo $java_script; ?>"></script>
   </body>
 </html>
