@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Sep 23, 2025 at 10:38 AM
+-- Generation Time: Sep 29, 2025 at 10:01 AM
 -- Server version: 12.0.2-MariaDB
--- PHP Version: 8.4.12
+-- PHP Version: 8.4.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -77,15 +77,43 @@ CREATE TABLE `admissions` (
 --
 
 INSERT INTO `admissions` (`id`, `student_name`, `student_email`, `guardian_name`, `course_code`, `roll_no`, `password`, `mobile_no`, `gender`, `dob`, `address`, `guardian_mobile_no`, `admission_day`, `admission_month`, `admission_year`, `end_day`, `end_month`, `end_year`, `student_photo`, `student_photo_thumb`, `total_course_fee`, `fee_receipt`, `course_status`) VALUES
-(160, 'Muhammad Shahid', 'some@gmail.com', 'Humayoun Khan', '1', 'siriftikhar', 'siriftikhar', '', 'Male', '', 'Not mentioned', '', '', '', '', '', '', '', 'user_data/162/user.png', 'student_photos/thumbs/IMG_20250127_110826_800.jpg', '', '', 'Completed'),
+(160, 'Muhammad Shahid', 'some@gmail.com', 'Humayoun Khan', '1', '11111', 'siriftikhar', '', 'Male', '', 'Not mentioned', '', '', '', '', '', '', '', 'user_data/162/user.png', 'student_photos/thumbs/IMG_20250127_110826_800.jpg', '', '', 'Completed'),
 (161, 'Bilal Sufi', '', 'Sher Muhammad', '18', '11458', 'fits', '', '', '', '', '', '', '', '', '', '', '', 'user_data/162/user.png', '', '', '', ''),
 (162, 'Rehmat Iqbal', '', 'Mehardad Khan', '1', '11450', 'fits', '', 'Male', '', '', '', '', '', '', '', '', '', 'user_data/162/user.png', 'student_photos/thumbs/rehmat_iqbal.jpg', '', '', 'Completed'),
 (163, 'Muzammil', '', 'Muhammad Punnah', '18', '11452', 'fits', '03263325383', 'Male', '06-01-2004', '', '', '', '', '', '', '', '', 'user_data/162/user.png', 'student_photos/thumbs/IMG_20250109_113708_470.jpg', '', '', 'Continue'),
 (164, 'Basharat Ullah', '', 'Abdul Wadood', '1', '11451', 'fits', '', 'Male', '', '', '', '', '', '', '', '', '', 'user_data/162/user.png', 'student_photos/thumbs/basharat_ullah.jpg', '', '', 'Completed'),
 (165, 'Asad Hayat Naul', '', 'Muhammad Riaz Naul', '16', '11479', 'fits', '', '', '', '', '', '', '', '', '', '', '', 'user_data/162/user.png', '', '', '', ''),
 (166, 'Badar Shakeel', '', 'Shakeel Asghar', '1', '11477', 'fits', '', 'Male', '', '', '', '', '', '', '', '', '', 'user_data/162/user.png', 'student_photos/thumbs/badar_shakeel.jpg', '', '', 'Completed'),
-(703, '', '', '', '004', '11478', 'speaknact', '', 'Male', '', '', '', '20', '9', '2025', '0', '0', '0', 'user_data/162/user.png', '', '3999', 'images/cheque.png', 'Continue'),
-(704, 'Hamza Rashid', 'some@gmail.com', 'Rashid', '001,002,003', '11479', 'speaknact', '13413241324', 'Male', 'something', 'somewhere', '314313241324', '22', '9', '2025', '0', '0', '0', 'user_data/704/pfp.png', '', '6', 'images/cheque.png', 'Continue');
+(704, 'Hamza Rashid', 'nice@gmail.com', 'Rashid', '001,002,003', '11479', 'nice', '13413241324', 'Male', 'something', 'somewhere', '314313241324', '22', '9', '2025', '0', '0', '0', 'user_data/704/pfp.png', '', '6', 'images/cheque.png', 'Continue');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `attendence`
+--
+
+CREATE TABLE `attendence` (
+  `id` int(11) NOT NULL,
+  `roll_no` int(100) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `year` varchar(100) NOT NULL,
+  `month` int(20) NOT NULL,
+  `day` varchar(10) NOT NULL,
+  `hour` int(100) NOT NULL,
+  `pm_or_am` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `attendence`
+--
+
+INSERT INTO `attendence` (`id`, `roll_no`, `name`, `year`, `month`, `day`, `hour`, `pm_or_am`) VALUES
+(17, 11479, 'Hamza Rashid', '2025', 25, 'Thu', 3, 'PM'),
+(18, 0, 'Muhammad Shahid', '2025', 25, 'Thu', 8, 'PM'),
+(19, 11479, 'Hamza Rashid', '2025', 26, 'Fri', 3, 'PM'),
+(20, 11111, 'Muhammad Shahid', '2025', 26, 'Fri', 3, 'PM'),
+(21, 11479, 'Hamza Rashid', '2025', 29, 'Mon', 10, 'AM'),
+(22, 11111, 'Muhammad Shahid', '2025', 29, 'Mon', 10, 'AM');
 
 -- --------------------------------------------------------
 
@@ -123,7 +151,7 @@ CREATE TABLE `courses` (
   `course_duration` varchar(10) NOT NULL,
   `course_fee` varchar(100) NOT NULL,
   `image` varchar(100) NOT NULL,
-  `description` varchar(100) NOT NULL
+  `description` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -131,10 +159,10 @@ CREATE TABLE `courses` (
 --
 
 INSERT INTO `courses` (`id`, `course_name`, `course_short_name`, `course_code`, `course_duration`, `course_fee`, `image`, `description`) VALUES
-(1, 'English Language Basic', 'ENG-1', '001', '1 Month', '5000', '', ''),
-(2, 'English Language Premium', 'ENG-2', '002', '1 Month', '8000', '', ''),
-(3, 'Public Speaking', 'PS', '003', '1 Month', '2999', '', ''),
-(4, 'Acting', 'ACT', '004', '1 Month', '3999', '', '');
+(1, 'English Language Basic', 'ENG-1', '001', '1 Month', '5000', 'images/english-speaking.png', 'it is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'),
+(2, 'English Language Premium', 'ENG-2', '002', '1 Month', '8000', 'images/advance-english-speaking.jpg', 'it is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'),
+(3, 'Public Speaking', 'PS', '003', '1 Month', '2999', 'images/public-speaking.jpg', 'it is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'),
+(4, 'Acting', 'ACT', '004', '1 Month', '3999', 'images/acting.jpg', 'it is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.');
 
 -- --------------------------------------------------------
 
@@ -225,6 +253,12 @@ ALTER TABLE `admissions`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `attendence`
+--
+ALTER TABLE `attendence`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `contact_info`
 --
 ALTER TABLE `contact_info`
@@ -269,6 +303,12 @@ ALTER TABLE `address_info`
 --
 ALTER TABLE `admissions`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=705;
+
+--
+-- AUTO_INCREMENT for table `attendence`
+--
+ALTER TABLE `attendence`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `contact_info`

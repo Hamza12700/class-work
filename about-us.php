@@ -56,7 +56,7 @@
   display: flex;
   justify-content: center;
   gap: 2rem;
-  width: 1200px;
+  width: 1400px;
   margin: 5rem auto 4rem auto;
 }
 

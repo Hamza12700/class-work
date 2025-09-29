@@ -49,7 +49,6 @@
           hx-get="/fetch-students.php"
           hx-trigger="input changed keyup=[key=='Enter'], load"
           hx-target="#student-found"
-
           id="name" required name="name" placeholder="Student Name" />
 
         <input id="roll_no" required name="roll_no" placeholder="Roll no" />
