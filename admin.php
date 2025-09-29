@@ -92,11 +92,6 @@
           <strong>Showing Page <?php echo $page_no." of ".$total_pages; ?></strong>
         </nav>
     </main>
-
-    <?php 
-    require('footer.php');
-    ?>
-    <script src="<?php echo $java_script; ?>"></script>
   </body>
 
   <script>
