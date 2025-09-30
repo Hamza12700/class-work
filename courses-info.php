@@ -16,7 +16,11 @@
     $total_courses = $res->num_rows;
     ?>
 
-    <h1 id="title">Total Courses <?php echo $total_courses; ?></h1>
+    <div class="title-container">
+      <h1 id="title">Total Courses <?php echo $total_courses; ?></h1>
+      <a id="add-courses" href="new-course.php"><span style="margin-right: 5px;">+</span>New Course</a>
+    </div>
+
     <main>
       <?php while ($course = $res->fetch_array()) { ?>
       <div class="card">
@@ -32,12 +36,21 @@
             <?php echo $course['description']; ?>
           </p>
 
-          <a class="action" href="<?php echo 'edit-course.php?id='.$course['id']; ?>">
-            Edit
-            <span aria-hidden="true">
-              →
-            </span>
-          </a>
+          <div class="btn-container">
+            <a class="action" href="<?php echo 'delete-course.php?id='.$course['id']; ?>">
+              Delete
+              <span style="font-weight: bold;" aria-hidden="true">
+                &#10005;
+              </span>
+            </a>
+
+            <a data-edit class="action" href="<?php echo 'edit-course.php?id='.$course['id']; ?>">
+              Edit
+              <span aria-hidden="true">
+                →
+              </span>
+            </a>
+          </div>
         </div>
       </div>
       <?php } ?> <!-- Closing while loop -->
@@ -47,8 +60,23 @@
 
 <style>
 #title {
-  text-align: center;
-  margin: 2rem 0;
+}
+
+.title-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 4rem;
+  align-items: center;
+}
+
+#add-courses {
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: white;
+  background-color: black;
+  padding: 12px;
+  border-radius: 5px;
 }
 
 main {
@@ -104,7 +132,10 @@ main {
   font-weight: 500;
   align-items: center;
   gap: 0.25rem;
-  background-color: #2563EB;
+  /* background-color: #2563EB; */
+  background-color: transparent;
+  color: black;
+  border: 1px solid black;
   padding: 4px 8px;
   border-radius: 4px;
 }
@@ -113,7 +144,12 @@ main {
   transition: .3s ease;
 }
 
-.action:hover span {
+.action[data-edit]:hover span {
   transform: translateX(4px);
+}
+
+.action:hover {
+  background-color: black;
+  color: white;
 }
 </style>

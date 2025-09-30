@@ -9,65 +9,61 @@
   </head>
 
   <body>
-    <?php 
-    $id = (int)$_GET["id"];
-    if (!$id) {
-      location("/");
-      exit();
-    }
-
-    $res = mysqli_query($db_con, "SELECT * FROM courses WHERE id = '$id'")->fetch_object();
-    ?>
-
     <form class="form" method="post" enctype="multipart/form-data">
+      <p><?php echo $status; ?></p>
       <a href="courses-info.php" style="font-size: 2rem; text-decoration: none; color: black;">&Larr;</a>
       <fieldset>
-        <legend>Edit Course Information</legend>
+        <legend>New Course</legend>
 
         <div class="parent-container">
           <div class="container">
             <label for="name">Course Name:</label>
-            <input name="name" value="<?php echo $res->course_name ?>" />
+            <input required name="name" />
 
             <label for="duration">Course Duration:</label>
-            <input name="duration" value="<?php echo $res->course_duration ?>" />
+            <input required name="duration" />
 
             <label for="fee">Course Fee:</label>
-            <input name="fee" value="<?php echo $res->course_fee ?>" />
+            <input required name="fee" />
 
             <label for="desc">Course Description:</label>
-            <textarea minlength="20" maxlength="1000" name="desc"><?php echo $res->description ?></textarea>
+            <textarea required minlength="20" maxlength="1000" name="desc"></textarea>
           </div>
 
           <div class="img-container">
             <label style="margin-bottom: 1rem;" for="course-img">Thumbnail</label>
-            <img src="<?php echo $res->image ?>" />
-            <input name="course-img" type="file" accept="image/*" />
+            <img id="output-img" src="images/no-img.jpg" />
+            <input onchange="display_image(event)" required name="course-img" type="file" accept="image/*" />
           </div>
+
+          <script>
+          function display_image(event) {
+            const link = document.getElementById("output-img");
+            link.src = URL.createObjectURL(event.target.files[0]);
+          }
+          </script>
         </div>
+
       </fieldset>
 
-      <button name="update" type="submit">Update</button>
+      <button name="create" type="submit">Create</button>
     </form>
   </body>
 </html>
 
 <?php
-if (isset($_POST['update'])) {
+if (isset($_POST['create'])) {
   $name = $_POST['name'];
   $duration = $_POST['duration'];
   $fee = $_POST['fee'];
   $desc = $_POST['desc'];
 
   $img = $_FILES['course-img']['name'];
-  if ($img) {
-    $dest = "images/".$img;
-    $tmp_img = $_FILES['course-img']['tmp_name'];
-    move_uploaded_file($tmp_img, $dest) or die("Failed to move uploaded file");
-    mysqli_query($db_con, "UPDATE courses SET image = '$dest' WHERE id = '$id'") or die("Failed to update image");
-  }
-  
-  mysqli_query($db_con, "UPDATE courses SET course_name = '$name', course_duration = '$duration', course_fee = '$fee', description = '$desc' WHERE id = '$id'") or die("Failed to update");
+  $tmp_img = $_FILES['course-img']['tmp_name'];
+  $dest = "images/".$img;
+  move_uploaded_file($tmp_img, $dest) or die("failed to move uploaded file");
+  mysqli_query($db_con, "INSERT INTO courses (course_name, course_duration, course_fee, image, description) VALUES ('$name', '$duration', '$fee', '$dest', '$desc')") or die("Failed to craete course");
+  $status = "Successful Created";
 }
 ?>
 
