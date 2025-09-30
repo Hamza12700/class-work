@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Sep 29, 2025 at 10:01 AM
+-- Generation Time: Sep 30, 2025 at 10:19 AM
 -- Server version: 12.0.2-MariaDB
 -- PHP Version: 8.4.13
 
@@ -146,8 +146,6 @@ INSERT INTO `contact_info` (`id`, `mobile_no`, `whatsapp`, `landline_no`, `email
 CREATE TABLE `courses` (
   `id` int(11) NOT NULL,
   `course_name` varchar(100) NOT NULL,
-  `course_short_name` varchar(100) NOT NULL,
-  `course_code` varchar(10) NOT NULL,
   `course_duration` varchar(10) NOT NULL,
   `course_fee` varchar(100) NOT NULL,
   `image` varchar(100) NOT NULL,
@@ -158,11 +156,12 @@ CREATE TABLE `courses` (
 -- Dumping data for table `courses`
 --
 
-INSERT INTO `courses` (`id`, `course_name`, `course_short_name`, `course_code`, `course_duration`, `course_fee`, `image`, `description`) VALUES
-(1, 'English Language Basic', 'ENG-1', '001', '1 Month', '5000', 'images/english-speaking.png', 'it is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'),
-(2, 'English Language Premium', 'ENG-2', '002', '1 Month', '8000', 'images/advance-english-speaking.jpg', 'it is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'),
-(3, 'Public Speaking', 'PS', '003', '1 Month', '2999', 'images/public-speaking.jpg', 'it is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'),
-(4, 'Acting', 'ACT', '004', '1 Month', '3999', 'images/acting.jpg', 'it is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.');
+INSERT INTO `courses` (`id`, `course_name`, `course_duration`, `course_fee`, `image`, `description`) VALUES
+(1, 'English Language Basic', '1 Month', '2000', 'images/english-speaking.png', 'it is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'),
+(2, 'English Language Premium', '2 Month', '5000', 'images/english-course.jpg', 'it is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'),
+(3, 'Public Speaking', '2 Month', '3000', 'images/public-speaking.jpg', 'it is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'),
+(4, 'Acting', '1 Month', '4000', 'images/acting.jpg', 'it is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'),
+(12242, 'Graphic Design', '2 Month', '5000', 'images/graphics-design.jpeg', 'it is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.');
 
 -- --------------------------------------------------------
 
@@ -320,7 +319,7 @@ ALTER TABLE `contact_info`
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12242;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12243;
 
 --
 -- AUTO_INCREMENT for table `results`
