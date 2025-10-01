@@ -47,6 +47,7 @@ $db_user = "hamza";
 $db_pass = "apassword";
 $db = "lms";
 $db_con = mysqli_connect($servername, $db_user, $db_pass,$db) or die("cannot connect");
+$mysqli = new mysqli($servername, $db_user, $db_pass,$db) or die("failed to connect");
 
 // Site Settings
 $fetch_for_site_settings = "SELECT * from site_settings";

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Sep 30, 2025 at 10:19 AM
+-- Generation Time: Oct 01, 2025 at 10:51 AM
 -- Server version: 12.0.2-MariaDB
 -- PHP Version: 8.4.13
 
@@ -113,7 +113,10 @@ INSERT INTO `attendence` (`id`, `roll_no`, `name`, `year`, `month`, `day`, `hour
 (19, 11479, 'Hamza Rashid', '2025', 26, 'Fri', 3, 'PM'),
 (20, 11111, 'Muhammad Shahid', '2025', 26, 'Fri', 3, 'PM'),
 (21, 11479, 'Hamza Rashid', '2025', 29, 'Mon', 10, 'AM'),
-(22, 11111, 'Muhammad Shahid', '2025', 29, 'Mon', 10, 'AM');
+(22, 11111, 'Muhammad Shahid', '2025', 29, 'Mon', 10, 'AM'),
+(23, 11479, 'Hamza Rashid', '2025', 30, 'Tue', 3, 'PM'),
+(24, 11111, 'Muhammad Shahid', '2025', 30, 'Tue', 3, 'PM'),
+(25, 11479, 'Hamza Rashid', '2025', 1, 'Wed', 3, 'PM');
 
 -- --------------------------------------------------------
 
@@ -162,6 +165,28 @@ INSERT INTO `courses` (`id`, `course_name`, `course_duration`, `course_fee`, `im
 (3, 'Public Speaking', '2 Month', '3000', 'images/public-speaking.jpg', 'it is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'),
 (4, 'Acting', '1 Month', '4000', 'images/acting.jpg', 'it is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'),
 (12242, 'Graphic Design', '2 Month', '5000', 'images/graphics-design.jpeg', 'it is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `emails`
+--
+
+CREATE TABLE `emails` (
+  `id` int(11) NOT NULL,
+  `email` varchar(150) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `subject` varchar(200) NOT NULL,
+  `phone_number` varchar(100) NOT NULL,
+  `description` varchar(2000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `emails`
+--
+
+INSERT INTO `emails` (`id`, `email`, `name`, `subject`, `phone_number`, `description`) VALUES
+(2, 'company@gmail.com', 'Company\'s Name', 'Just Checking', '322314324213', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.');
 
 -- --------------------------------------------------------
 
@@ -270,6 +295,12 @@ ALTER TABLE `courses`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `emails`
+--
+ALTER TABLE `emails`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `results`
 --
 ALTER TABLE `results`
@@ -307,7 +338,7 @@ ALTER TABLE `admissions`
 -- AUTO_INCREMENT for table `attendence`
 --
 ALTER TABLE `attendence`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `contact_info`
@@ -320,6 +351,12 @@ ALTER TABLE `contact_info`
 --
 ALTER TABLE `courses`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12243;
+
+--
+-- AUTO_INCREMENT for table `emails`
+--
+ALTER TABLE `emails`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `results`

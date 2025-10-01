@@ -1,62 +1,130 @@
+<?php
+require('config.php');
+
+if (isset($_POST['contact'])) {
+  $email = $_POST['email'];
+  $subject = $_POST['subject'];
+  $name = $_POST['user_name'];
+  $phone = $_POST['phone_number'];
+  $desc = $_POST['desc'];
+
+  $stmt = $mysqli->prepare("INSERT INTO emails (email, name, subject, phone_number, description) VALUES (?, ?, ?, ?, ?)");
+  $stmt->bind_param("sssss", $email, $name, $subject, $phone, $desc);
+  $stmt->execute();
+  echo '<h1 style="text-align: center; margin: 5rem 0;">We will review your request soon!</h1>';
+  $stmt->close();
+  exit();
+}
+
+?>
 <!DOCTYPE html>
 <html>
-<head>
-<!-- meta info -->
-<?php 
-require('config.php');
-require('meta.php');
-?>
-</head>
+  <head>
+    <?php require('meta.php'); ?>
+    <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.7/dist/htmx.min.js"></script>
+  </head>
 
-<body>
-<?php 
-require('header.php');
-?>
+  <body>
+    <?php 
+    require('header.php');
+    ?>
 
-<div id="page_container">
+    <form hx-target="this" hx-post="/contact_us.php" class="form" method="post">
+      <fieldset>
+        <legend>Contact Us</legend>
 
+        <div class="email-container">
+          <input required type="email" name="email" placeholder="Email address" />
+          <input required type="text" name="subject" placeholder="Subject" />
+        </div>
 
-<form id="contact_us_form">
+        <div class="email-container">
+          <input required type="text" name="user_name" placeholder="Full Name" />
+          <input required type="text" name="phone_number" placeholder="Phone Number" />
+        </div>
 
-<div>
-<span>Full Name</span>
-<input type="text" name="" />
-</div>
+        <textarea name="desc" placeholder="Description" required maxlength="1000"></textarea>
+      </fieldset>
 
+      <button name="contact" type="submit">Submit</button>
+    </form>
 
-<div>
-<span>Email Address</span>
-<input type="email" name="" />
-</div>
-
-<div>
-<span>Phone Number</span>
-<input type="email" name="" />
-</div>
-
-<div>
-<span>Phone Number</span>
-<input type="email" name="" />
-</div>
-
-<div>
-<span>Phone Number</span>
-<textarea>
-</textarea>
-</div>
-
-<button type="submit" class="fas fa-arrow-right" > Submit</button>
-
-</form>
-
-
-
-<iframe style="width:100%; height:450px;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); border-radius: 15px; border:0; " src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1445.8179159519123!2d73.07682869039932!3d33.64116728455049!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38df9580894c9ce9%3A0xc123c2664904ec6c!2sFedral%20institute%20of%20skills%20rwp!5e0!3m2!1sen!2s!4v1724922906748!5m2!1sen!2s"  allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
-
-</div>
-
-
-<script src="<?php echo $java_script; ?>"></script>
-</body>
+    <?php require('footer.php'); ?>
+  </body>
 </html>
+
+
+<style>
+.email-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin: 1rem 0;
+
+  input {
+    width: 100%;
+  }
+}
+
+fieldset {
+  padding: 1rem;
+}
+
+.form button {
+  background: white;
+  font-family: auto;
+  padding: 0.6em 1.3em;
+  font-weight: 900;
+  font-size: 18px;
+  border: 3px solid black;
+  border-radius: 0.4em;
+  box-shadow: 0.1em 0.1em;
+  cursor: pointer;
+  margin: 1rem 0;
+  display: flex;
+  justify-self: end;
+}
+
+.form button:hover {
+  transform: translate(-0.05em, -0.05em);
+  box-shadow: 0.15em 0.15em;
+}
+
+.form button:active {
+  transform: translate(0.05em, 0.05em);
+  box-shadow: 0.05em 0.05em;
+}
+
+.form {
+  width: 900px;
+  margin: 5rem auto;
+}
+
+legend {
+  background-color: black;
+  color: white;
+  padding: 10px;
+  font-size: 1.5rem;
+}
+
+/* From Uiverse.io by anniekoop */ 
+.form input, textarea {
+  padding: 0.875rem;
+  font-size: 1rem;
+  border: 1.5px solid #000;
+  border-radius: 0.5rem;
+  box-shadow: 2.5px 3px 0 #000;
+  outline: none;
+  transition: ease 0.25s;
+}
+
+.form textarea {
+  resize: none;
+  width: 100%;
+  height: 200px;
+}
+
+.form input:focus {
+  box-shadow: 5.5px 7px 0 black;
+}
+</style>
