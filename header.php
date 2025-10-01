@@ -30,8 +30,6 @@ if ($_SESSION['user_session']) { $login = "true"; }
     <i onclick="window.open('about-us.php','_self')">About Us</i>
     <i onclick="window.open('programs.php','_self')">Programs</i>
     <i onclick="window.open('gallery.php','_SELF')">Student Gallery</i>
-    <i>Blog</i>
-    <i>Results</i>
     <i onclick="window.open('contact_us.php','_SELF')">Contact Us</i>
   </div>
 </header>
