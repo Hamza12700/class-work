@@ -68,6 +68,7 @@ if (isset($_POST['contact'])) {
 
 fieldset {
   padding: 1rem;
+  background-color: #F2F0EF;
 }
 
 .form button {
