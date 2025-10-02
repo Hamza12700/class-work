@@ -25,7 +25,7 @@ $email = $email->fetch_object();
     <main>
       <a href="emails.php">&larrhk; Back</a>
       <hgroup>
-        <h1>Email from: <?php echo $email->email; ?></h1>
+        <h1>From: <span><?php echo $email->email; ?></span></h1>
         <p><strong>Subject:</strong> <?php echo $email->subject; ?></p>
       </hgroup>
 
@@ -62,7 +62,12 @@ hgroup {
 
   h1 {
     font-size: 1.7rem;
-    margin-bottom: .5rem;
+    margin-bottom: .3rem;
+    margin-top: 1rem;
+
+    span {
+      font-family: roboto;
+    }
   }
 }
 </style>
