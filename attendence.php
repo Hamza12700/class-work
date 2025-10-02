@@ -46,10 +46,20 @@
 
         <p id="student-found"></p>
         <input
+          list="students-list"
           hx-get="/fetch-students.php"
           hx-trigger="input changed keyup=[key=='Enter'], load"
           hx-target="#student-found"
           id="name" required name="name" placeholder="Student Name" />
+
+        <datalist id="students-list">
+          <?php
+          $res = $mysql->query("SELECT student_name FROM admissions");
+          while ($student = $res->fetch_object()->student_name) {
+          ?>
+          <option value="<?php echo $student ?>"></option>
+          <?php } ?>
+        </datalist>
 
         <input id="roll_no" required name="roll_no" placeholder="Roll no" />
         <input id="guardian_name" required name="guardian_name" placeholder="Guardian Name" />
