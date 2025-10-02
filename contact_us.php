@@ -8,7 +8,7 @@ if (isset($_POST['contact'])) {
   $phone = $_POST['phone_number'];
   $desc = $_POST['desc'];
 
-  $stmt = $mysqli->prepare("INSERT INTO emails (email, name, subject, phone_number, description) VALUES (?, ?, ?, ?, ?)");
+  $stmt = $mysql->prepare("INSERT INTO emails (email, name, subject, phone_number, description) VALUES (?, ?, ?, ?, ?)");
   $stmt->bind_param("sssss", $email, $name, $subject, $phone, $desc);
   $stmt->execute();
   echo '<h1 style="text-align: center; margin: 5rem 0;">We will review your request soon!</h1>';
