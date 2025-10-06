@@ -28,7 +28,6 @@
     </div>
 
     <div id="page_container">
-
       <div class="who_we_are">
         <img src="images/who_we_are.jpg">
 
@@ -117,3 +116,12 @@
     ?>
   </body>
 </html>
+
+<style>
+#page_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+</style>
