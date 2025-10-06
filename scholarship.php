@@ -1,4 +1,19 @@
-<?php require('config.php'); ?>
+<?php
+require('config.php');
+
+$mcqs = $mysql->query("SELECT * FROM scholarship_mcqs") or die("Failed to fetch mcqs");
+
+if (isset($_POST['scholarship'])) {
+  $input_count = $mcqs->num_rows;
+  $inputs = [];
+  for ($i = 1; $i <= $input_count; $i++) {
+    $inputs[] = $_POST['choice'.$i];
+  }
+
+  var_dump($inputs);
+  exit();
+}
+?>
 
 <!DOCTYPE html>
 <html>
@@ -10,7 +25,7 @@
   <body>
     <?php
     require('header.php');
-    $time_limit = 60 * 2; // In seconds
+    $time_limit = 60 * 10; // In seconds
     ?>
 
     <dialog id="dialog">
@@ -19,7 +34,10 @@
     </dialog>
 
     <h1 id="title" class="title">ScholarShip MCQ's</h1>
-    <p id="timer">Time remaining: <span id="time-ms"><?php echo ($time_limit / 60) - 1; ?></span>m <span id="time-sec">60</span>s</p>
+    <p id="timer">
+      Time remaining: <span id="time-ms"><?php echo ($time_limit / 60) - 1; ?></span>m
+      <span id="time-sec">60</span>s
+    </p>
     <script>
     setInterval(() => {
       const min_elm = document.getElementById("time-ms");
@@ -28,8 +46,8 @@
       secs -= 1;
       if (secs === 0) {
         let minute = Number(min_elm.innerText);
-        minte -= 1;
-        if (minte <= 0) minte = 0;
+        minute -= 1;
+        if (minute <= 0) minute = 0;
         min_elm.innerText = minute;
         secs = 60;
       }
@@ -39,7 +57,6 @@
 
     <form id="form" hx-target="this" class="form" hx-post="/scholarship.php">
       <?php
-      $mcqs = $mysql->query("SELECT * FROM scholarship_mcqs") or die("Failed to fetch mcqs");
       $count = 0;
       while ($mcq = $mcqs->fetch_array()) {
         $count += 1;
